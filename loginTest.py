@@ -7,18 +7,16 @@ setup_io()
 import time,unittest
 import HTMLTestRunner
 from selenium import webdriver
-from loginPage import loginPage
+from search import search
 class loginTest(unittest.TestCase):
     def setUp(self):
         self.driver=webdriver.Chrome()
-        self.driver.get('https://passport.ctrip.com/user/login?')
+        self.driver.get('https://trains.ctrip.com/TrainBooking/SearchTrain.aspx')
         self.driver.maximize_window()
-    def test_01(self):
-        lo=loginPage(self.driver)
-        l=lo.LoginIn("1010269241@qq.com","aA19908112404")
-#        time.sleep(9)
-        print(l)
-        self.assertIn('myinfo',l)
+    def test_01(self): 
+        se=search(self.driver)
+        s=se.city('上海','杭州')
+
     def tearDown(self):
         time.sleep(6)
         self.driver.quit()
